@@ -27,7 +27,7 @@ func (e *EventsService) List(ctx context.Context) ([]Event, error) {
 
 }
 
-// Delete Clears all all dashboard events.
+// Delete clears all dashboard events.
 func (e *EventsService) Delete(ctx context.Context) error {
 	req, err := e.client.NewRequest(ctx, "POST", "/v2/events/delete", nil)
 	if err != nil {
