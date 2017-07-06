@@ -158,10 +158,7 @@ func (f *FilesService) Delete(ctx context.Context, files ...int64) error {
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 // Rename change the name of the file to newname.
@@ -184,11 +181,7 @@ func (f *FilesService) Rename(ctx context.Context, id int64, newname string) err
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // Move moves files to the given destination.
@@ -220,10 +213,7 @@ func (f *FilesService) Move(ctx context.Context, parent int64, files ...int64) e
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 // Upload reads from given io.Reader and uploads the file contents to Put.io
@@ -321,11 +311,7 @@ func (f *FilesService) convert(ctx context.Context, id int64) error {
 	}
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // Share shares given files with given friends. Friends are list of usernames.
@@ -361,11 +347,7 @@ func (f *FilesService) share(ctx context.Context, files []int64, friends ...stri
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // Shared returns list of shared files and share information.
@@ -506,11 +488,7 @@ func (f *FilesService) SetVideoPosition(ctx context.Context, id int64, t int) er
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // DeleteVideoPosition deletes video position for a video file.
