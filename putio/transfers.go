@@ -183,11 +183,7 @@ func (t *TransfersService) Cancel(ctx context.Context, ids ...int64) error {
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = t.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // Clean removes completed transfers from the transfer list.
@@ -199,9 +195,5 @@ func (t *TransfersService) Clean(ctx context.Context) error {
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = t.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }

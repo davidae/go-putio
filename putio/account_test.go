@@ -1,6 +1,7 @@
 package putio
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"testing"
@@ -61,7 +62,8 @@ func TestAccount_Info(t *testing.T) {
 		fmt.Fprintln(w, fixture)
 	})
 
-	info, err := client.Account.Info(nil)
+	ctx := context.Background()
+	info, err := client.Account.Info(ctx)
 	if err != nil {
 		t.Error(err)
 	}
@@ -109,7 +111,8 @@ func TestAccount_Settings(t *testing.T) {
 		fmt.Fprintln(w, fixture)
 	})
 
-	settings, err := client.Account.Settings(nil)
+	ctx := context.Background()
+	settings, err := client.Account.Settings(ctx)
 	if err != nil {
 		t.Error(err)
 	}

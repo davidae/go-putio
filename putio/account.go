@@ -78,8 +78,3 @@ func (a *AccountService) Settings(ctx context.Context) (Settings, error) {
 
 	return r.Settings, nil
 }
-
-// FIXME: fill
-func (a *AccountService) updateSettings() error {
-	panic("not implemented yet")
-}

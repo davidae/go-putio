@@ -22,7 +22,7 @@ type Zip struct {
 	URL    string `json:"url"`
 
 	// FIXME: missing_files field is missin
-	missingFiles string
+	// missingFiles string
 }
 
 // Get gives detailed information about the given zip file id.

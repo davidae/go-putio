@@ -354,7 +354,7 @@ func (f *FilesService) Search(ctx context.Context, query string, page int64) (Se
 }
 
 // FIXME: is it worth to export this method?
-func (f *FilesService) convert(ctx context.Context, id int64) error {
+func (f *FilesService) Convert(ctx context.Context, id int64) error {
 	if id < 0 {
 		return errNegativeID
 	}
