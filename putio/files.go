@@ -20,6 +20,60 @@ type FilesService struct {
 	redirectOnceClient *Client
 }
 
+// File represents a Put.io file.
+type File struct {
+	ID                int64  `json:"id"`
+	Name              string `json:"name"`
+	Size              int64  `json:"size"`
+	ContentType       string `json:"content_type"`
+	CreatedAt         *Time  `json:"created_at"`
+	FirstAccessedAt   *Time  `json:"first_accessed_at"`
+	ParentID          int64  `json:"parent_id"`
+	Screenshot        string `json:"screenshot"`
+	OpensubtitlesHash string `json:"opensubtitles_hash"`
+	IsMP4Available    bool   `json:"is_mp4_available"`
+	Icon              string `json:"icon"`
+	CRC32             string `json:"crc32"`
+	IsShared          bool   `json:"is_shared"`
+}
+
+func (f *File) String() string {
+	return fmt.Sprintf("<ID: %v Name: %q Size: %v>", f.ID, f.Name, f.Size)
+}
+
+// IsDir reports whether the file is a directory.
+func (f *File) IsDir() bool {
+	return f.ContentType == "application/x-directory"
+}
+
+// Search represents a search response.
+type Search struct {
+	Files []File `json:"files"`
+	Next  string `json:"next"`
+}
+
+// Subtitle represents a subtitle.
+type Subtitle struct {
+	Key      string
+	Language string
+	Name     string
+	Source   string
+}
+
+// Upload represents a Put.io upload. If the uploaded file is a torrent file,
+// Transfer field will represent the status of the transfer.
+type Upload struct {
+	File     *File     `json:"file"`
+	Transfer *Transfer `json:"transfer"`
+}
+
+type share struct {
+	FileID   int64  `json:"file_id"`
+	Filename string `json:"file_name"`
+	// Number of friends the file is shared with
+	SharedWith int64 `json:"shared_with"`
+}
+
 // Get fetches file metadata for given file ID.
 func (f *FilesService) Get(ctx context.Context, id int64) (File, error) {
 	if id < 0 {
@@ -504,11 +558,7 @@ func (f *FilesService) DeleteVideoPosition(ctx context.Context, id int64) error 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	_, err = f.client.Do(req, &struct{}{})
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 func itoa(i int64) string {

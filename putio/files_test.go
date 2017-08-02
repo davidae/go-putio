@@ -341,7 +341,6 @@ func TestFiles_Download(t *testing.T) {
 }`
 		w.WriteHeader(http.StatusPaymentRequired)
 		fmt.Fprintln(w, errorBody)
-		return
 	})
 
 	mux.HandleFunc("/v2/files/666/download", func(w http.ResponseWriter, r *http.Request) {
