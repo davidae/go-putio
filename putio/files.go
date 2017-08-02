@@ -353,7 +353,8 @@ func (f *FilesService) Search(ctx context.Context, query string, page int64) (Se
 	return r, nil
 }
 
-// FIXME: is it worth to export this method?
+// Convert starts a conversion of the given file to MP4 format, which is
+// playable in most media players.
 func (f *FilesService) Convert(ctx context.Context, id int64) error {
 	if id < 0 {
 		return errNegativeID
