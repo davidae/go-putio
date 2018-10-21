@@ -35,7 +35,7 @@ type File struct {
 	Icon              string `json:"icon"`
 	CRC32             string `json:"crc32"`
 	IsShared          bool   `json:"is_shared"`
-	StartFrom         int64  `json:"start_from"`
+	StartFrom         int    `json:"start_from"`
 }
 
 func (f *File) String() string {
